@@ -1,6 +1,8 @@
+using System;
+using System.Collections.Generic;
 namespace DVA222_Labb5
 {
-    class Evaluator: IVisitor {
+    public class Evaluator: IVisitor {
         public Evaluator(IVisitable t) {
             s = new Stack<int>();
             t.Accept(this);
@@ -30,13 +32,22 @@ namespace DVA222_Labb5
             int right = s.Pop();
             s.Push(left/right);
         }
-          public void Visit(fct e)
+          public void Visit(Fct e)
         {
             e.Left.Accept(this);
             int left = s.Pop();
             e.Right.Accept(this);
             int right = s.Pop();
-            s.Push(//fakrot 5!);
+            s.Push((int)Math.Pow(left, right));
+        }
+
+        public void Visit(Max e)
+        {
+            e.Left.Accept(this);
+            int left = s.Pop();
+            e.Right.Accept(this);
+            int right = s.Pop();
+            s.Push(Math.Max(left, right));
         }
         
 

@@ -1,6 +1,6 @@
 namespace DVA222_Labb5
 {
-    class Literal : IVisitable {
+    public class Literal : IVisitable {
         public readonly int Value;
         public Literal(int Value) {
             this.Value = Value;
