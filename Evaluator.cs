@@ -30,27 +30,26 @@ namespace DVA222_Labb5
             int left = s.Pop();
             e.Right.Accept(this);
             int right = s.Pop();
+            if (right == 0) throw new DivideByZeroException("You cannot divide by zero.");
             s.Push(left/right);
         }
-          public void Visit(Fct e)
+        public void Visit(Fct e)
         {
-            e.Left.Accept(this);
-            int left = s.Pop();
-            e.Right.Accept(this);
-            int right = s.Pop();
-            s.Push((int)Math.Pow(left, right));
+            e.Argument.Accept(this);
+            int value = s.Pop();
+            s.Push(FactorialCalc.Factorial(value));
         }
 
-        public void Visit(Max e)
+        /*public void Visit(Max e)
         {
+            //tror dehär blir fel...
             e.Left.Accept(this);
             int left = s.Pop();
             e.Right.Accept(this);
             int right = s.Pop();
             s.Push(Math.Max(left, right));
-        }
+        }*/
         
-
         public void Clear() => s.Clear();
         public override string ToString() => s.Peek().ToString();
         private Stack<int> s;

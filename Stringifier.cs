@@ -22,6 +22,23 @@ namespace DVA222_Labb5
             s.Append("*");
             e.Right.Accept(this);
         }
+        public void Visit(Div e)
+        {
+            e.Left.Accept(this);
+            s.Append("/");
+            e.Right.Accept(this);
+        }
+        public void Visit(Fct e)
+        {
+            e.Left.Accept(this);
+            s.Append("^");
+            e.Right.Accept(this); 
+        }
+        public void Visit(Max e)
+        {
+            //fixa
+        }
+
         public void Clear() => s.Clear();
         public override string ToString() => s.ToString();
         private StringBuilder s;

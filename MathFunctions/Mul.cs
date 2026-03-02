@@ -1,6 +1,6 @@
 namespace DVA222_Labb5
 {
-    class Mul : IVisitable 
+    public class Mul : IVisitable 
     {
         public Mul(IVisitable Left, IVisitable Right) {
             this.Left = Left;

@@ -1,6 +1,6 @@
 namespace DVA222_Labb5
 {
-    class Add : IVisitable
+    public class Add : IVisitable
     {
         public Add(IVisitable Left, IVisitable Right) {
             this.Left = Left;
