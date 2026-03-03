@@ -1,57 +1,70 @@
-﻿/*using System;
-
-class Program
+﻿using System;
+namespace DVA222_Labb5
 {
-
-	static void Test(Action block)
+	class Program
 	{
-		try
+		static void Test(Action block)
 		{
-			block();
+			try
+			{
+				block();
+			}
+			//ADD MORE CATCH BLOCKS HERE 
+			catch (DivideByZeroException)
+			{
+				Console.WriteLine("cannot divide by zero");
+			}	
+			catch(FactorialOfNegativeException)
+			{
+				Console.WriteLine("cannot calculate factorial of a negatives");
+			}
+			catch (ArgumentException)
+			{
+				Console.WriteLine("passed argument is not correct");
+			}
+			catch (Exception)
+			{
+				Console.WriteLine("generic exception");
+			}
 		}
-		//ADD MORE CATCH BLOCKS HERE 
-		catch (Exception)
+
+		static void DivCase()
 		{
-			Console.WriteLine("generic exception");
+			IVisitable exp = new Div(new Literal(120), new Add(new Literal(8), new Literal(4)));
+			Console.Write(new Stringifier(exp) + " = ");
+			Console.WriteLine(new Evaluator(exp));
+			exp = new Div(new Mul(new Literal(5), new Literal(4)), new Literal(0));
+			Console.Write(new Stringifier(exp) + " = ");
+			Console.WriteLine(new Evaluator(exp));
+		}
+
+		static void FctCase()
+		{
+			IVisitable exp = new Fct(new Mul(new Literal(2), new Literal(3)));
+			Console.Write(new Stringifier(exp) + " = ");
+			Console.WriteLine(new Evaluator(exp));
+			exp = new Fct(new Mul(new Literal(-2), new Literal(7)));
+			Console.Write(new Stringifier(exp) + " = ");
+			Console.WriteLine(new Evaluator(exp));
+		}
+
+		static void MaxCase()
+		{
+			IVisitable[] args = new IVisitable[] { new Add(new Literal(-2), new Literal(9)), new Literal(6), new Literal(0) };
+			IVisitable exp = new Max(args);
+			Console.Write(new Stringifier(exp) + " = ");
+			Console.WriteLine(new Evaluator(exp));
+			args = new IVisitable[0];
+			exp = new Max(args);
+			Console.Write(new Stringifier(exp) + " = ");
+			Console.WriteLine(new Evaluator(exp));
+		}
+
+		static void Main()
+		{
+			Test(DivCase);
+			Test(FctCase);
+			Test(MaxCase);
 		}
 	}
-
-	static void DivCase()
-	{
-		IVisitable exp = new Div(new Literal(120), new Add(new Literal(8), new Literal(4)));
-		Console.Write(new Stringifier(exp) + " = ");
-		Console.WriteLine(new Evaluator(exp));
-		exp = new Div(new Mul(new Literal(5), new Literal(4)), new Literal(0));
-		Console.Write(new Stringifier(exp) + " = ");
-		Console.WriteLine(new Evaluator(exp));
-	}
-
-	static void FctCase()
-	{
-		IVisitable exp = new Fct(new Mul(new Literal(2), new Literal(3)));
-		Console.Write(new Stringifier(exp) + " = ");
-		Console.WriteLine(new Evaluator(exp));
-		exp = new Fct(new Mul(new Literal(-2), new Literal(7)));
-		Console.Write(new Stringifier(exp) + " = ");
-		Console.WriteLine(new Evaluator(exp));
-	}
-
-	static void MaxCase()
-	{
-		IVisitable[] args = new IVisitable[] { new Add(new Literal(-2), new Literal(9)), new Literal(6), new Literal(0) };
-		IVisitable exp = new Max(args);
-		Console.Write(new Stringifier(exp) + " = ");
-		Console.WriteLine(new Evaluator(exp));
-		args = new IVisitable[0];
-		exp = new Max(args);
-		Console.Write(new Stringifier(exp) + " = ");
-		Console.WriteLine(new Evaluator(exp));
-	}
-
-	static void Main()
-	{
-		Test(DivCase);
-		Test(FctCase);
-		Test(MaxCase);
-	}
-}*/
+}
