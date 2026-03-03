@@ -36,7 +36,7 @@ namespace DVA222_Labb5
         }
         public void Visit(Max e)
         {
-            s.Append("Max(");
+            s.Append("Max{");
             var it = e.GetEnumerator();
             bool first = true;
 
@@ -48,7 +48,7 @@ namespace DVA222_Labb5
                 it.Current.Accept(this);
                 first = false;
             }
-            s.Append(")");
+            s.Append("}");
         }
 
         public void Clear() => s.Clear();
