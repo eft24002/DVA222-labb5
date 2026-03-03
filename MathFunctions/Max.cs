@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 namespace DVA222_Labb5
 {
@@ -28,7 +30,7 @@ namespace DVA222_Labb5
             public bool MoveNext()
             {
                 position++;
-                return (position < max.arguments.Length);
+                return position < max.arguments.Length;
             }
             public void Reset() => position = -1;
         }
