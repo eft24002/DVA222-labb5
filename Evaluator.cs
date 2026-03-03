@@ -40,15 +40,23 @@ namespace DVA222_Labb5
             s.Push(FactorialCalc.Factorial(value));
         }
 
-        /*public void Visit(Max e)
+        public void Visit(Max e)
         {
-            //tror dehär blir fel...
-            e.Left.Accept(this);
-            int left = s.Pop();
-            e.Right.Accept(this);
-            int right = s.Pop();
-            s.Push(Math.Max(left, right));
-        }*/
+            var it = e.GetEnumerator();
+
+            it.MoveNext();
+            it.Current.Accept(this);
+            int max = s.Pop();
+
+            while (it.MoveNext())
+            {
+                it.Current.Accept(this);
+                int value = s.Pop();
+                if (value > max)
+                    max = value;
+            }
+            s.Push(max);
+        }
         
         public void Clear() => s.Clear();
         public override string ToString() => s.Peek().ToString();

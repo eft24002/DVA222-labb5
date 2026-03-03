@@ -30,13 +30,25 @@ namespace DVA222_Labb5
         }
         public void Visit(Fct e)
         {
-            e.Left.Accept(this);
-            s.Append("^");
-            e.Right.Accept(this); 
+            s.Append("(");
+            e.Argument.Accept(this);
+            s.Append(")!");
         }
         public void Visit(Max e)
         {
-            //fixa
+            s.Append("Max(");
+            var it = e.GetEnumerator();
+            bool first = true;
+
+            while (it.MoveNext())
+            {
+                if (!first)
+                    s.Append(", ");
+                
+                it.Current.Accept(this);
+                first = false;
+            }
+            s.Append(")");
         }
 
         public void Clear() => s.Clear();
