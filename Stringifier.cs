@@ -43,7 +43,7 @@ namespace DVA222_Labb5
             while (it.MoveNext())
             {
                 if (!first)
-                    s.Append(", ");
+                    s.Append(",");
                 
                 it.Current.Accept(this);
                 first = false;
